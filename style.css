@@ -1,0 +1,161 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(180deg, #fff8f0 0%, #fdf2ff 100%);
+  color: #2d1b3d;
+}
+
+h1, h2, h3, .nav-btn, .band-buttons button, .page-btn, .reveal-btn {
+  font-family: 'Fredoka', Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 36px 20px;
+  background: linear-gradient(135deg, #ff7eb3, #7a5cff);
+  color: white;
+}
+
+nav {
+  text-align: center;
+  padding: 15px;
+  background-color: #ffe8f3;
+}
+
+.nav-btn {
+  margin: 5px;
+  padding: 10px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #7a2e6e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.nav-btn:hover {
+  background-color: #ffd3eb;
+}
+
+main {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 15px 30px;
+}
+
+.section {
+  display: none;
+}
+
+.active-section {
+  display: block;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(122, 92, 255, 0.12);
+  border-left: 6px solid #ff7eb3;
+}
+
+.intro-card {
+  margin-top: 15px;
+}
+
+.band-buttons {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.band-buttons button {
+  margin: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffd166, #ff7eb3);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.band-buttons button:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.band-content {
+  display: none;
+}
+
+.active-band {
+  display: block;
+}
+
+.word-page {
+  display: none;
+}
+
+.word-page.active-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.vocab-card p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.hebrew {
+  font-weight: bold;
+  color: #7a2e6e;
+}
+
+.hebrew.hidden {
+  display: none;
+}
+
+.reveal-btn,
+.page-btn {
+  margin-top: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  color: white;
+}
+
+.reveal-btn {
+  background-color: #ff7eb3;
+}
+
+.page-btn {
+  background-color: #7a5cff;
+  margin: 5px;
+}
+
+.reveal-btn:hover,
+.page-btn:hover {
+  opacity: 0.9;
+}
+
+.page-controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .word-page.active-page {
+    grid-template-columns: 1fr;
+  }
+}
