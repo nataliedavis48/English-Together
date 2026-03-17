@@ -3,178 +3,971 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vocabulary Bands</title>
+  <title>English Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Vocabulary Bands</h1>
-    <p>Explore vocabulary from Band I, Band II, and Band III.</p>
-  </header>
-
-  <nav>
-    <button class="nav-btn" onclick="showSection('home')">Home</button>
-    <button class="nav-btn" onclick="showSection('vocabulary')">Vocabulary</button>
-  </nav>
-
-  <main>
-    <section id="home" class="section active-section">
-      <h2>Welcome</h2>
-      <div class="card intro-card">
-        <p>Welcome to the vocabulary website. Click on the Vocabulary section and choose a band to view the words.</p>
-        <p>Try to guess the meaning first, then click <strong>Show Hebrew</strong> to check yourself.</p>
-      </div>
-    </section>
-
-    <section id="vocabulary" class="section">
-      <h2>Vocabulary</h2>
-      <p>Choose a band to view the vocabulary.</p>
-
-      <div class="band-buttons">
-        <button onclick="showBand('band1')">Band I</button>
-        <button onclick="showBand('band2')">Band II</button>
-        <button onclick="showBand('band3')">Band III</button>
-      </div>
-
-      <div id="band1" class="band-content active-band">
-        <h3>Band I</h3>
-
-        <div class="word-page active-page">
-          <div class="card vocab-card"><p><strong>about</strong></p><p class="hebrew hidden">על / בערך</p><p><em>This book is about friendship.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>after</strong></p><p class="hebrew hidden">אחרי</p><p><em>We went home after school.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>animal</strong></p><p class="hebrew hidden">חיה / בעל חיים</p><p><em>The lion is a wild animal.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>again</strong></p><p class="hebrew hidden">שוב</p><p><em>Please say that again.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>age</strong></p><p class="hebrew hidden">גיל</p><p><em>What age is your sister?</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>air</strong></p><p class="hebrew hidden">אוויר</p><p><em>Open the window and let fresh air in.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>all right</strong></p><p class="hebrew hidden">בסדר</p><p><em>Are you all right after the game?</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>also</strong></p><p class="hebrew hidden">גם</p><p><em>She also likes music.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>always</strong></p><p class="hebrew hidden">תמיד</p><p><em>He always comes on time.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>among</strong></p><p class="hebrew hidden">בין</p><p><em>She felt comfortable among friends.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>and</strong></p><p class="hebrew hidden">ו</p><p><em>Dina and Maya are classmates.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>angry</strong></p><p class="hebrew hidden">כועס</p><p><em>He was angry about the mistake.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-        </div>
-
-        <div class="word-page">
-          <div class="card vocab-card"><p><strong>answer</strong></p><p class="hebrew hidden">תשובה / לענות</p><p><em>Please answer the question.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>any</strong></p><p class="hebrew hidden">כלשהו / כל</p><p><em>Do you have any questions?</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>apple</strong></p><p class="hebrew hidden">תפוח</p><p><em>She ate an apple at lunch.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>around</strong></p><p class="hebrew hidden">מסביב / בערך</p><p><em>We walked around the park.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>arrive</strong></p><p class="hebrew hidden">להגיע</p><p><em>They will arrive at eight.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>ask</strong></p><p class="hebrew hidden">לשאול / לבקש</p><p><em>Don’t be afraid to ask for help.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>at</strong></p><p class="hebrew hidden">ב־ / אצל / בשעה</p><p><em>Meet me at the bus stop.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>aunt</strong></p><p class="hebrew hidden">דודה</p><p><em>My aunt lives in Haifa.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>autumn</strong></p><p class="hebrew hidden">סתיו</p><p><em>The leaves fall in autumn.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>away</strong></p><p class="hebrew hidden">הרחק / לא כאן</p><p><em>My friend is away this week.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>baby</strong></p><p class="hebrew hidden">תינוק</p><p><em>The baby is sleeping עכשיו.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>back</strong></p><p class="hebrew hidden">גב / בחזרה</p><p><em>Come back soon.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-        </div>
-
-        <div class="page-controls">
-          <button class="page-btn" onclick="changePage('band1', -1)">← Previous</button>
-          <button class="page-btn" onclick="changePage('band1', 1)">Next →</button>
-        </div>
-      </div>
-
-      <div id="band2" class="band-content">
-        <h3>Band II</h3>
-
-        <div class="word-page active-page">
-          <div class="card vocab-card"><p><strong>ability</strong></p><p class="hebrew hidden">יכולת</p><p><em>She has the ability to solve difficult problems.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>accept</strong></p><p class="hebrew hidden">לקבל</p><p><em>He was happy to accept the award.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>achieve</strong></p><p class="hebrew hidden">להשיג</p><p><em>They worked hard to achieve success.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>across</strong></p><p class="hebrew hidden">מעבר ל</p><p><em>The school is across the road.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>act</strong></p><p class="hebrew hidden">לפעול</p><p><em>We must act quickly.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>action</strong></p><p class="hebrew hidden">פעולה</p><p><em>Her quick action helped everyone.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>active</strong></p><p class="hebrew hidden">פעיל</p><p><em>He is active in the school council.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>activity</strong></p><p class="hebrew hidden">פעילות</p><p><em>The class activity was fun.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>actually</strong></p><p class="hebrew hidden">למעשה</p><p><em>I actually enjoyed the lesson.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>add</strong></p><p class="hebrew hidden">להוסיף</p><p><em>Please add your name to the list.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>address</strong></p><p class="hebrew hidden">כתובת</p><p><em>Write your address clearly.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>admire</strong></p><p class="hebrew hidden">להעריץ</p><p><em>I admire her courage.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-        </div>
-
-        <div class="page-controls">
-          <button class="page-btn" onclick="changePage('band2', -1)">← Previous</button>
-          <button class="page-btn" onclick="changePage('band2', 1)">Next →</button>
-        </div>
-      </div>
-
-      <div id="band3" class="band-content">
-        <h3>Band III</h3>
-
-        <div class="word-page active-page">
-          <div class="card vocab-card"><p><strong>abandon</strong></p><p class="hebrew hidden">לנטוש</p><p><em>They had to abandon the plan because of the weather.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>abstract</strong></p><p class="hebrew hidden">מופשט</p><p><em>Some students find abstract ideas difficult to understand.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>accurate</strong></p><p class="hebrew hidden">מדויק</p><p><em>Please give an accurate answer.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>accuse</strong></p><p class="hebrew hidden">להאשים</p><p><em>It is wrong to accuse someone without proof.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>adapt</strong></p><p class="hebrew hidden">להסתגל</p><p><em>Students must adapt to new situations.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>additional</strong></p><p class="hebrew hidden">נוסף</p><p><em>We need additional information.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>adequate</strong></p><p class="hebrew hidden">מספק</p><p><em>The room was adequate for the meeting.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>adjacent</strong></p><p class="hebrew hidden">סמוך</p><p><em>The library is adjacent to the hall.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>adjust</strong></p><p class="hebrew hidden">להתאים</p><p><em>She adjusted the chair height.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>administer</strong></p><p class="hebrew hidden">לנהל</p><p><em>The team will administer the test.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>adopt</strong></p><p class="hebrew hidden">לאמץ</p><p><em>The school adopted a new rule.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-          <div class="card vocab-card"><p><strong>advocate</strong></p><p class="hebrew hidden">לתמוך ב</p><p><em>They advocate equal opportunities.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
-        </div>
-
-        <div class="page-controls">
-          <button class="page-btn" onclick="changePage('band3', -1)">← Previous</button>
-          <button class="page-btn" onclick="changePage('band3', 1)">Next →</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active-section'));
-      document.getElementById(sectionId).classList.add('active-section');
+  <style>
+    :root {
+      --hot-pink: #FF2D78;
+      --electric-blue: #00C2FF;
+      --neon-yellow: #FFE500;
+      --deep-purple: #1A0533;
+      --white: #FFFFFF;
+      --card-bg: rgba(255,255,255,0.07);
+      --radius: 20px;
     }
 
-    function showBand(bandId) {
-      const bands = document.querySelectorAll('.band-content');
-      bands.forEach(band => band.classList.remove('active-band'));
-      document.getElementById(bandId).classList.add('active-band');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--deep-purple);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    function changePage(bandId, direction) {
-      const band = document.getElementById(bandId);
-      const pages = band.querySelectorAll('.word-page');
-      let currentIndex = 0;
-
-      pages.forEach((page, index) => {
-        if (page.classList.contains('active-page')) {
-          currentIndex = index;
-        }
-      });
-
-      pages[currentIndex].classList.remove('active-page');
-
-      let newIndex = currentIndex + direction;
-      if (newIndex < 0) newIndex = pages.length - 1;
-      if (newIndex >= pages.length) newIndex = 0;
-
-      pages[newIndex].classList.add('active-page');
-      band.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,45,120,0.3), transparent 70%);
+      border-radius: 50%;
+      animation: blob1 8s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    function toggleHebrew(button) {
-      const card = button.parentElement;
-      const hebrew = card.querySelector('.hebrew');
-      hebrew.classList.toggle('hidden');
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,194,255,0.25), transparent 70%);
+      border-radius: 50%;
+      animation: blob2 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-      if (hebrew.classList.contains('hidden')) {
-        button.textContent = 'Show Hebrew';
-      } else {
-        button.textContent = 'Hide Hebrew';
+    @keyframes blob1 {
+      to { transform: translate(100px, 150px); }
+    }
+
+    @keyframes blob2 {
+      to { transform: translate(-100px, -100px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,5,51,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(255,229,0,0.2);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-placeholder {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--hot-pink), var(--electric-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      overflow: hidden;
+    }
+
+    .logo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .site-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 28px;
+      background: linear-gradient(90deg, var(--hot-pink), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 2px solid transparent;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 8px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      border-color: var(--neon-yellow);
+      color: var(--neon-yellow);
+    }
+
+    .page {
+      display: none;
+      padding: 40px 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero h1 {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(48px, 10vw, 90px);
+      line-height: 1;
+      background: linear-gradient(135deg, var(--hot-pink) 0%, var(--neon-yellow) 50%, var(--electric-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    .score-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .score-chip {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,229,0,0.3);
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-chip span {
+      color: var(--neon-yellow);
+      font-size: 20px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .section-card.vocab::before {
+      background: linear-gradient(135deg, rgba(255,45,120,0.2), transparent);
+    }
+
+    .section-card.grammar::before {
+      background: linear-gradient(135deg, rgba(0,194,255,0.2), transparent);
+    }
+
+    .section-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--neon-yellow);
+    }
+
+    .section-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .card-badge {
+      display: inline-block;
+      margin-top: 14px;
+      background: var(--hot-pink);
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section-card.grammar .card-badge {
+      background: var(--electric-blue);
+      color: #120224;
+    }
+
+    .back-btn {
+      background: none;
+      border: 2px solid rgba(255,255,255,0.2);
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 24px;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      border-color: var(--neon-yellow);
+      color: var(--neon-yellow);
+    }
+
+    .page-heading {
+      font-family: 'Boogaloo', cursive;
+      font-size: 38px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--hot-pink), var(--electric-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-sub {
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .act-btn {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 18px 16px;
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .act-btn:hover {
+      border-color: var(--hot-pink);
+      background: rgba(255,45,120,0.15);
+    }
+
+    .act-btn .act-icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .activity-area,
+    .progress-card,
+    .teacher-box {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .grammar-question {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 18px 0 12px;
+      line-height: 1.5;
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .progress-num {
+      font-family: 'Boogaloo', cursive;
+      font-size: 48px;
+      background: linear-gradient(135deg, var(--hot-pink), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .progress-label {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .teacher-box {
+      margin-bottom: 24px;
+    }
+
+    .teacher-box h3 {
+      font-family: 'Boogaloo', cursive;
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--neon-yellow);
+    }
+
+    .notif {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00FF88;
+      color: #0a0a0a;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      z-index: 999;
+      box-shadow: 0 8px 30px rgba(0,255,136,0.4);
+    }
+
+    .notif.error {
+      background: #FF4444;
+      color: white;
+    }
+
+    .band-buttons {
+      margin: 20px 0 28px;
+      text-align: center;
+    }
+
+    .band-buttons button {
+      margin: 5px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--neon-yellow), var(--hot-pink));
+      color: white;
+      font-weight: 800;
+      font-family: 'Nunito', sans-serif;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .band-content,
+    .grammar-tense {
+      display: none;
+    }
+
+    .active-band {
+      display: block;
+    }
+
+    .word-page {
+      display: none;
+    }
+
+    .word-page.active-page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .vocab-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin: 0;
+    }
+
+    .vocab-card p {
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    .hebrew {
+      font-weight: 800;
+      color: var(--neon-yellow);
+    }
+
+    .hebrew.hidden {
+      display: none;
+    }
+
+    .reveal-btn,
+    .page-btn,
+    .btn-primary {
+      margin-top: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 16px;
+      color: white;
+      font-weight: 800;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .reveal-btn,
+    .btn-primary {
+      background: linear-gradient(135deg, var(--hot-pink), #ff6b35);
+    }
+
+    .page-btn {
+      background: linear-gradient(135deg, var(--electric-blue), #0080ff);
+      margin: 5px;
+    }
+
+    .page-controls {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 700px) {
+      .word-page.active-page {
+        grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      .site-title { font-size: 22px; }
+      .page { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-area">
+      <div class="logo-placeholder" id="navLogo">ET</div>
+      <span class="site-title">English Together</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+      <button class="nav-btn" onclick="showPage('vocab')">📚 Vocab</button>
+      <button class="nav-btn" onclick="showPage('grammar')">✏️ Grammar</button>
+      <button class="nav-btn" onclick="showPage('progress')">🏆 Progress</button>
+      <button class="nav-btn" onclick="showPage('teacher')">👩‍🏫 Teacher</button>
+    </div>
+  </nav>
+
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <h1>English Together</h1>
+      <p>Level up your English! Practice vocab and grammar — and have fun doing it. 🚀</p>
+      <div class="score-bar">
+        <div class="score-chip">🔥 Streak: <span id="streak-display">0</span></div>
+        <div class="score-chip">⭐ Points: <span id="points-display">0</span></div>
+        <div class="score-chip">✅ Activities: <span id="acts-display">0</span></div>
+      </div>
+
+      <div class="section-grid">
+        <div class="section-card vocab" onclick="showPage('vocab')">
+          <div class="card-icon">📚</div>
+          <div class="card-title">Vocabulary</div>
+          <div class="card-desc">Practise Band I, Band II and Band III words with self-checking Hebrew support.</div>
+          <div class="card-badge">Bands</div>
+        </div>
+
+        <div class="section-card grammar" onclick="showPage('grammar')">
+          <div class="card-icon">✏️</div>
+          <div class="card-title">Grammar</div>
+          <div class="card-desc">Present, past and future exercises with points and progress tracking.</div>
+          <div class="card-badge">Tenses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-vocab">
+    <button class="back-btn" onclick="showPage('home')">← Back</button>
+    <div class="page-heading">Vocabulary Bands</div>
+    <p class="page-sub">Choose a band, test yourself, and reveal the Hebrew meaning only when you are ready.</p>
+
+    <div class="band-buttons">
+      <button onclick="showBand('band1')">Band I</button>
+      <button onclick="showBand('band2')">Band II</button>
+      <button onclick="showBand('band3')">Band III</button>
+    </div>
+
+    <div id="band1" class="band-content active-band">
+      <h3>Band I</h3>
+      <div class="word-page active-page">
+        <div class="vocab-card"><p><strong>about</strong></p><p class="hebrew hidden">על / בערך</p><p><em>This book is about friendship.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>after</strong></p><p class="hebrew hidden">אחרי</p><p><em>We went home after school.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>animal</strong></p><p class="hebrew hidden">חיה / בעל חיים</p><p><em>The lion is a wild animal.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>again</strong></p><p class="hebrew hidden">שוב</p><p><em>Please say that again.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>age</strong></p><p class="hebrew hidden">גיל</p><p><em>What age is your sister?</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>air</strong></p><p class="hebrew hidden">אוויר</p><p><em>Open the window and let fresh air in.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+      </div>
+      <div class="page-controls">
+        <button class="page-btn" onclick="changePage('band1', -1)">← Previous</button>
+        <button class="page-btn" onclick="changePage('band1', 1)">Next →</button>
+      </div>
+    </div>
+
+    <div id="band2" class="band-content">
+      <h3>Band II</h3>
+      <div class="word-page active-page">
+        <div class="vocab-card"><p><strong>ability</strong></p><p class="hebrew hidden">יכולת</p><p><em>She has the ability to solve difficult problems.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>accept</strong></p><p class="hebrew hidden">לקבל</p><p><em>He was happy to accept the award.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>achieve</strong></p><p class="hebrew hidden">להשיג</p><p><em>They worked hard to achieve success.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>across</strong></p><p class="hebrew hidden">מעבר ל</p><p><em>The school is across the road.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>act</strong></p><p class="hebrew hidden">לפעול</p><p><em>We must act quickly.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>action</strong></p><p class="hebrew hidden">פעולה</p><p><em>Her quick action helped everyone.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+      </div>
+      <div class="page-controls">
+        <button class="page-btn" onclick="changePage('band2', -1)">← Previous</button>
+        <button class="page-btn" onclick="changePage('band2', 1)">Next →</button>
+      </div>
+    </div>
+
+    <div id="band3" class="band-content">
+      <h3>Band III</h3>
+      <div class="word-page active-page">
+        <div class="vocab-card"><p><strong>abandon</strong></p><p class="hebrew hidden">לנטוש</p><p><em>They had to abandon the plan because of the weather.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>abstract</strong></p><p class="hebrew hidden">מופשט</p><p><em>Some students find abstract ideas difficult to understand.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>accurate</strong></p><p class="hebrew hidden">מדויק</p><p><em>Please give an accurate answer.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>accuse</strong></p><p class="hebrew hidden">להאשים</p><p><em>It is wrong to accuse someone without proof.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>adapt</strong></p><p class="hebrew hidden">להסתגל</p><p><em>Students must adapt to new situations.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+        <div class="vocab-card"><p><strong>additional</strong></p><p class="hebrew hidden">נוסף</p><p><em>We need additional information.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
+      </div>
+      <div class="page-controls">
+        <button class="page-btn" onclick="changePage('band3', -1)">← Previous</button>
+        <button class="page-btn" onclick="changePage('band3', 1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-grammar">
+    <button class="back-btn" onclick="showPage('home')">← Back</button>
+    <div class="page-heading">Grammar Practice</div>
+    <p class="page-sub">Choose a tense and then choose an exercise.</p>
+
+    <div class="band-buttons">
+      <button onclick="showGrammarTense('present')">Present</button>
+      <button onclick="showGrammarTense('past')">Past</button>
+      <button onclick="showGrammarTense('future')">Future</button>
+    </div>
+
+    <div id="grammar-present" class="grammar-tense active-band">
+      <h3>Present</h3>
+      <div class="activity-grid">
+        <button class="act-btn" onclick="showGrammarExercise('present-simple')"><span class="act-icon">🟢</span> Present Simple</button>
+        <button class="act-btn" onclick="showGrammarExercise('present-progressive')"><span class="act-icon">🔵</span> Present Progressive</button>
+        <button class="act-btn" onclick="showGrammarExercise('present-mixed')"><span class="act-icon">🟣</span> Mixed Present</button>
+      </div>
+    </div>
+
+    <div id="grammar-past" class="grammar-tense">
+      <h3>Past</h3>
+      <div class="activity-grid">
+        <button class="act-btn" onclick="showGrammarExercise('past-simple')"><span class="act-icon">🟠</span> Past Simple</button>
+        <button class="act-btn" onclick="showGrammarExercise('past-progressive')"><span class="act-icon">🔴</span> Past Progressive</button>
+        <button class="act-btn" onclick="showGrammarExercise('past-mixed')"><span class="act-icon">🟤</span> Mixed Past</button>
+      </div>
+    </div>
+
+    <div id="grammar-future" class="grammar-tense">
+      <h3>Future</h3>
+      <div class="activity-grid">
+        <button class="act-btn" onclick="showGrammarExercise('future-will')"><span class="act-icon">🟡</span> Will</button>
+        <button class="act-btn" onclick="showGrammarExercise('future-going')"><span class="act-icon">🟢</span> Be Going To</button>
+        <button class="act-btn" onclick="showGrammarExercise('future-mixed')"><span class="act-icon">🔵</span> Mixed Future</button>
+      </div>
+    </div>
+
+    <div id="grammar-exercise-area" class="activity-area" style="display:none;"></div>
+  </div>
+
+  <div class="page" id="page-progress">
+    <button class="back-btn" onclick="showPage('home')">← Back</button>
+    <div class="page-heading">Your Progress 🏆</div>
+    <p class="page-sub">See how far you've come!</p>
+
+    <div class="progress-grid">
+      <div class="progress-card">
+        <div class="progress-num" id="prog-points">0</div>
+        <div class="progress-label">Total Points</div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-num" id="prog-acts">0</div>
+        <div class="progress-label">Activities Done</div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-num" id="prog-correct">0</div>
+        <div class="progress-label">Correct Answers</div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-num" id="prog-streak">0</div>
+        <div class="progress-label">Day Streak</div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="resetProgress()">Reset My Progress</button>
+  </div>
+
+  <div class="page" id="page-teacher">
+    <button class="back-btn" onclick="showPage('home')">← Back</button>
+    <div class="page-heading">Teacher's Panel 👩‍🏫</div>
+    <p class="page-sub">This section is ready for more teacher tools later.</p>
+
+    <div class="teacher-box">
+      <h3>Teacher Area</h3>
+      <p>For now, the main working parts are Vocabulary, Grammar and Progress.</p>
+    </div>
+  </div>
+
+  <<script>
+  let state = {
+    points: Number(localStorage.getItem('et_points')) || 0,
+    activitiesDone: Number(localStorage.getItem('et_activitiesDone')) || 0,
+    correctAnswers: Number(localStorage.getItem('et_correctAnswers')) || 0,
+    streak: Number(localStorage.getItem('et_streak')) || 0
+  };
+
+  function saveProgress() {
+    localStorage.setItem('et_points', state.points);
+    localStorage.setItem('et_activitiesDone', state.activitiesDone);
+    localStorage.setItem('et_correctAnswers', state.correctAnswers);
+    localStorage.setItem('et_streak', state.streak);
+  }
+
+  function updateScoreBars() {
+    document.getElementById('streak-display').textContent = state.streak || 0;
+    document.getElementById('points-display').textContent = state.points || 0;
+    document.getElementById('acts-display').textContent = state.activitiesDone || 0;
+    document.getElementById('prog-points').textContent = state.points || 0;
+    document.getElementById('prog-acts').textContent = state.activitiesDone || 0;
+    document.getElementById('prog-correct').textContent = state.correctAnswers || 0;
+    document.getElementById('prog-streak').textContent = state.streak || 0;
+  }
+
+  function notify(msg, isError = false) {
+    const old = document.querySelector('.notif');
+    if (old) old.remove();
+
+    const el = document.createElement('div');
+    el.className = 'notif' + (isError ? ' error' : '');
+    el.textContent = msg;
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 2500);
+  }
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      if (btn.textContent.toLowerCase().includes(id.slice(0, 4))) {
+        btn.classList.add('active');
+      }
+    });
+
+    updateScoreBars();
+  }
+
+  function showBand(bandId) {
+    document.querySelectorAll('.band-content').forEach(band => band.classList.remove('active-band'));
+    document.getElementById(bandId).classList.add('active-band');
+  }
+
+  function changePage(bandId, direction) {
+    const band = document.getElementById(bandId);
+    const pages = band.querySelectorAll('.word-page');
+    let currentIndex = 0;
+
+    pages.forEach((page, index) => {
+      if (page.classList.contains('active-page')) currentIndex = index;
+    });
+
+    pages[currentIndex].classList.remove('active-page');
+
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) newIndex = pages.length - 1;
+    if (newIndex >= pages.length) newIndex = 0;
+
+    pages[newIndex].classList.add('active-page');
+  }
+
+  function toggleHebrew(button) {
+    const card = button.parentElement;
+    const hebrew = card.querySelector('.hebrew');
+    const wasHidden = hebrew.classList.contains('hidden');
+
+    hebrew.classList.toggle('hidden');
+    button.textContent = hebrew.classList.contains('hidden') ? 'Show Hebrew' : 'Hide Hebrew';
+
+    if (wasHidden) {
+      state.points += 1;
+      state.activitiesDone += 1;
+      state.correctAnswers += 1;
+      if (state.streak === 0) state.streak = 1;
+      saveProgress();
+      updateScoreBars();
+    }
+  }
+
+  function showGrammarTense(tense) {
+    document.querySelectorAll('.grammar-tense').forEach(section => {
+      section.classList.remove('active-band');
+    });
+
+    document.getElementById('grammar-' + tense).classList.add('active-band');
+    document.getElementById('grammar-exercise-area').style.display = 'none';
+  }
+
+  function checkGrammarAnswer(button, isCorrect) {
+    const group = button.parentElement;
+    const buttons = group.querySelectorAll('.act-btn');
+
+    if (group.dataset.answered === 'yes') return;
+    group.dataset.answered = 'yes';
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (isCorrect) {
+      button.style.borderColor = '#00FF88';
+      button.style.background = 'rgba(0,255,136,0.15)';
+      state.points += 2;
+      state.activitiesDone += 1;
+      state.correctAnswers += 1;
+      if (state.streak === 0) state.streak = 1;
+      saveProgress();
+      updateScoreBars();
+      notify('Correct!');
+    } else {
+      button.style.borderColor = '#FF4444';
+      button.style.background = 'rgba(255,68,68,0.15)';
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-correct') === 'true') {
+          btn.style.borderColor = '#00FF88';
+          btn.style.background = 'rgba(0,255,136,0.15)';
+        }
+      });
+      notify('Try again', true);
+    }
+  }
+
+  function makeOption(text, correct) {
+    return `<button class="act-btn" data-correct="${correct}" onclick="checkGrammarAnswer(this, ${correct})">${text}</button>`;
+  }
+
+  function renderQuestions(title, questions) {
+    const area = document.getElementById('grammar-exercise-area');
+    area.style.display = 'block';
+
+    let html = `<div class="activity-title">${title}</div>`;
+
+    questions.forEach((q, index) => {
+      html += `
+        <div class="grammar-question">${index + 1}. ${q.question}</div>
+        <div class="activity-grid">
+          ${makeOption(q.options[0], q.correctIndex === 0)}
+          ${makeOption(q.options[1], q.correctIndex === 1)}
+          ${makeOption(q.options[2], q.correctIndex === 2)}
+        </div>
+      `;
+    });
+
+    area.innerHTML = html;
+  }
+
+  function showGrammarExercise(type) {
+    if (type === 'present-simple') {
+      renderQuestions('Present Simple', [
+        { question: 'She ___ to school every day.', options: ['goes', 'go', 'going'], correctIndex: 0 },
+        { question: 'They ___ soccer on Sundays.', options: ['plays', 'play', 'are playing'], correctIndex: 1 },
+        { question: 'My mother ___ coffee every morning.', options: ['drinks', 'drink', 'is drinking'], correctIndex: 0 },
+        { question: 'He ___ English very well.', options: ['speak', 'speaks', 'is speaking'], correctIndex: 1 },
+        { question: 'We ___ our grandparents every Friday.', options: ['visit', 'visits', 'are visiting'], correctIndex: 0 },
+        { question: 'The sun ___ in the east.', options: ['rise', 'rises', 'is rising'], correctIndex: 1 }
+      ]);
+    }
+
+    if (type === 'present-progressive') {
+      renderQuestions('Present Progressive', [
+        { question: 'They ___ football right now.', options: ['play', 'are playing', 'plays'], correctIndex: 1 },
+        { question: 'She ___ a book at the moment.', options: ['is reading', 'reads', 'read'], correctIndex: 0 },
+        { question: 'I ___ my homework now.', options: ['do', 'am doing', 'does'], correctIndex: 1 },
+        { question: 'We ___ dinner now.', options: ['cook', 'are cooking', 'cooks'], correctIndex: 1 },
+        { question: 'Look! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
+        { question: 'He ___ on the phone at the moment.', options: ['talks', 'is talking', 'talk'], correctIndex: 1 }
+      ]);
+    }
+
+    if (type === 'present-mixed') {
+      renderQuestions('Mixed Present', [
+        { question: 'She usually ___ to school by bus.', options: ['goes', 'is going', 'go'], correctIndex: 0 },
+        { question: 'Listen! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
+        { question: 'My father ___ coffee every morning.', options: ['drinks', 'is drinking', 'drink'], correctIndex: 0 },
+        { question: 'We ___ lunch now.', options: ['eat', 'are eating', 'eats'], correctIndex: 1 },
+        { question: 'Tom often ___ computer games after school.', options: ['plays', 'is playing', 'play'], correctIndex: 0 },
+        { question: 'Look! They ___ in the pool.', options: ['swim', 'are swimming', 'swims'], correctIndex: 1 }
+      ]);
+    }
+
+    if (type === 'past-simple') {
+      renderQuestions('Past Simple', [
+        { question: 'She ___ to school yesterday.', options: ['went', 'goes', 'is going'], correctIndex: 0 },
+        { question: 'They ___ football last Sunday.', options: ['played', 'play', 'were playing'], correctIndex: 0 },
+        { question: 'My mother ___ dinner at 7:00 last night.', options: ['cooks', 'cooked', 'is cooking'], correctIndex: 1 },
+        { question: 'We ___ a film yesterday evening.', options: ['watched', 'watch', 'are watching'], correctIndex: 0 },
+        { question: 'He ___ his homework after dinner.', options: ['finished', 'finishes', 'was finishing'], correctIndex: 0 },
+        { question: 'I ___ my friend last weekend.', options: ['visit', 'visited', 'am visiting'], correctIndex: 1 }
+      ]);
+    }
+
+    if (type === 'past-progressive') {
+      renderQuestions('Past Progressive', [
+        { question: 'They ___ football when it started to rain.', options: ['played', 'were playing', 'play'], correctIndex: 1 },
+        { question: 'I ___ TV at 8:00 last night.', options: ['watched', 'was watching', 'watch'], correctIndex: 1 },
+        { question: 'She ___ while her brother was studying.', options: ['was sleeping', 'slept', 'sleeps'], correctIndex: 0 },
+        { question: 'We ___ home when we saw the teacher.', options: ['walked', 'were walking', 'walk'], correctIndex: 1 },
+        { question: 'He ___ dinner when the phone rang.', options: ['was making', 'made', 'makes'], correctIndex: 0 },
+        { question: 'They ___ in the garden at 5:00 yesterday.', options: ['played', 'were playing', 'play'], correctIndex: 1 }
+      ]);
+    }
+
+    if (type === 'past-mixed') {
+      renderQuestions('Mixed Past', [
+        { question: 'While I ___ to school, I saw my friend.', options: ['was walking', 'walked', 'walk'], correctIndex: 0 },
+        { question: 'We ___ dinner and then watched a film.', options: ['finished', 'were finishing', 'finish'], correctIndex: 0 },
+        { question: 'They ___ in the park when the phone rang.', options: ['played', 'were playing', 'plays'], correctIndex: 1 },
+        { question: 'She ___ when her mother came home.', options: ['slept', 'was sleeping', 'sleeps'], correctIndex: 1 },
+        { question: 'He ___ the window and then sat down.', options: ['opened', 'was opening', 'opens'], correctIndex: 0 },
+        { question: 'I ___ breakfast at 7:30 yesterday.', options: ['ate', 'was eating', 'eat'], correctIndex: 0 }
+      ]);
+    }
+
+    if (type === 'future-will') {
+      renderQuestions('Future with Will', [
+        { question: 'I think it ___ tomorrow.', options: ['will rain', 'rains', 'is raining'], correctIndex: 0 },
+        { question: 'She ___ you later.', options: ['calls', 'will call', 'called'], correctIndex: 1 },
+        { question: 'We ___ help you with your homework.', options: ['will', 'are', 'did'], correctIndex: 0 },
+        { question: 'I am sure he ___ the answer.', options: ['knows', 'will know', 'knew'], correctIndex: 1 },
+        { question: 'Maybe they ___ late.', options: ['will be', 'are being', 'were'], correctIndex: 0 },
+        { question: 'I think people ___ to the moon again.', options: ['will travel', 'travel', 'traveled'], correctIndex: 0 }
+      ]);
+    }
+
+    if (type === 'future-going') {
+      renderQuestions('Be Going To', [
+        { question: 'They ___ visit their grandmother this weekend.', options: ['are going to', 'will', 'were going to'], correctIndex: 0 },
+        { question: 'I ___ study tonight.', options: ['will studying', 'am going to', 'go to'], correctIndex: 1 },
+        { question: 'She ___ buy a new bag next week.', options: ['is', 'is going to', 'was going to'], correctIndex: 1 },
+        { question: 'We ___ clean the classroom tomorrow.', options: ['are going to', 'will be', 'went to'], correctIndex: 0 },
+        { question: 'He ___ play basketball after school.', options: ['is going to', 'goes to', 'was'], correctIndex: 0 },
+        { question: 'I ___ meet my cousin on Friday.', options: ['am going to', 'will be', 'met'], correctIndex: 0 }
+      ]);
+    }
+
+    if (type === 'future-mixed') {
+      renderQuestions('Mixed Future', [
+        { question: 'Look at those clouds! It ___ rain.', options: ['will', 'is going to', 'was going to'], correctIndex: 1 },
+        { question: 'I think people ___ live on Mars one day.', options: ['will', 'are going to', 'were'], correctIndex: 0 },
+        { question: 'We ___ start the lesson in five minutes.', options: ['started', 'are going to', 'was'], correctIndex: 1 },
+        { question: 'I am sure she ___ enjoy the trip.', options: ['will', 'is going to', 'went to'], correctIndex: 0 },
+        { question: 'They ___ have a picnic tomorrow. They already bought food.', options: ['are going to', 'will', 'had'], correctIndex: 0 },
+        { question: 'Maybe he ___ call later.', options: ['will', 'is going to', 'was going'], correctIndex: 0 }
+      ]);
+    }
+  }
+
+  function resetProgress() {
+    state.points = 0;
+    state.activitiesDone = 0;
+    state.correctAnswers = 0;
+    state.streak = 0;
+    saveProgress();
+    updateScoreBars();
+    notify('Progress reset!');
+  }
+
+  updateScoreBars();
   </script>
 </body>
 </html>
