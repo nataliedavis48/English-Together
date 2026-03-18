@@ -795,10 +795,18 @@
     <p class="page-sub">Learn English by playing.</p>
 
     <div class="activity-grid">
-      <button class="act-btn" onclick="startMemoryMatch()">
-        <span class="act-icon">🧠</span> Memory Match
-      </button>
-    </div>
+  <button class="act-btn" onclick="startMemoryMatch()">
+    <span class="act-icon">🧠</span> Memory Match
+  </button>
+
+  <button class="act-btn" onclick="startBand3SpeedQuiz()">
+    <span class="act-icon">⚡</span> Band III Speed Quiz
+  </button>
+
+  <button class="act-btn" onclick="startBand1HebrewSpeedQuiz()">
+    <span class="act-icon">🌟</span> Band I Hebrew Speed Quiz
+  </button>
+</div>
 
     <div id="games-area" class="activity-area" style="display:none;"></div>
   </div>
@@ -1251,6 +1259,284 @@
       reader.readAsDataURL(file);
     }
 
+    const band3QuizData = [
+  { word: "abandon", correct: "to leave something behind", wrong: ["to improve something", "to choose carefully", "to explain clearly"] },
+  { word: "abstract", correct: "based on ideas, not physical things", wrong: ["very easy to see", "full of action", "related to farming"] },
+  { word: "accurate", correct: "correct and exact", wrong: ["too fast", "very confusing", "full of danger"] },
+  { word: "accuse", correct: "to say someone did something wrong", wrong: ["to protect someone", "to thank someone", "to follow someone"] },
+  { word: "adapt", correct: "to change in order to fit a new situation", wrong: ["to refuse to move", "to hide from others", "to make something shorter"] },
+  { word: "additional", correct: "extra; more than what was first given", wrong: ["very old", "completely broken", "not important"] },
+  { word: "adequate", correct: "enough; good enough for a need", wrong: ["far too expensive", "full of energy", "easy to forget"] },
+  { word: "adjacent", correct: "next to something", wrong: ["under the ground", "extremely loud", "full of color"] },
+  { word: "adjust", correct: "to change something slightly", wrong: ["to throw away", "to win easily", "to copy exactly"] },
+  { word: "administer", correct: "to manage or organize", wrong: ["to discover by accident", "to climb carefully", "to imagine deeply"] },
+  { word: "adopt", correct: "to accept and start using", wrong: ["to throw out", "to make less important", "to describe in detail"] },
+  { word: "advocate", correct: "to publicly support something", wrong: ["to hide information", "to disagree silently", "to travel far away"] },
+  { word: "aid", correct: "help or support", wrong: ["a difficult test", "a strong storm", "a secret plan"] },
+  { word: "alter", correct: "to change", wrong: ["to repeat", "to collect", "to divide"] },
+  { word: "annual", correct: "happening every year", wrong: ["happening every day", "happening at night", "happening once only"] },
+  { word: "anticipate", correct: "to expect something before it happens", wrong: ["to deny something", "to clean something", "to delay something"] },
+  { word: "apparent", correct: "clear; easy to notice", wrong: ["hidden from view", "difficult to hear", "strange and unusual"] },
+  { word: "approach", correct: "to move closer to something", wrong: ["to break into pieces", "to disappear suddenly", "to throw with force"] },
+  { word: "appropriate", correct: "suitable for a situation", wrong: ["too expensive to buy", "impossible to finish", "very narrow and long"] },
+  { word: "approximate", correct: "not exact, but close", wrong: ["100% certain", "too bright to see", "large and empty"] }
+];
+
+let band3QuizTimer = null;
+let band3QuizTimeLeft = 60;
+let band3QuizScore = 0;
+let band3QuizWrong = 0;
+let band3CurrentQuestion = null;
+
+function startBand3SpeedQuiz() {
+  clearInterval(band3QuizTimer);
+  clearInterval(band1QuizTimer);
+
+  band3QuizTimeLeft = 60;
+  band3QuizScore = 0;
+  band3QuizWrong = 0;
+
+  const area = document.getElementById('games-area');
+  area.style.display = 'block';
+
+  renderBand3SpeedQuiz();
+  startBand3Timer();
+}
+
+function startBand3Timer() {
+  if (band3QuizTimer) clearInterval(band3QuizTimer);
+
+  band3QuizTimer = setInterval(() => {
+    band3QuizTimeLeft--;
+
+    const timerEl = document.getElementById('band3-timer');
+    if (timerEl) timerEl.textContent = band3QuizTimeLeft;
+
+    if (band3QuizTimeLeft <= 0) {
+      clearInterval(band3QuizTimer);
+      endBand3SpeedQuiz();
+    }
+  }, 1000);
+}
+
+function renderBand3SpeedQuiz() {
+  const area = document.getElementById('games-area');
+  const q = band3QuizData[Math.floor(Math.random() * band3QuizData.length)];
+  band3CurrentQuestion = q;
+
+  const options = shuffleArray([q.correct, ...q.wrong]);
+
+  area.innerHTML = `
+    <div class="activity-title">⚡ Band III Speed Quiz</div>
+    <p style="margin-bottom:12px; color: rgba(255,255,255,0.8);">
+      Choose the correct definition before time runs out.
+    </p>
+
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
+      <div class="score-chip">⏱️ Time: <span id="band3-timer">${band3QuizTimeLeft}</span></div>
+      <div class="score-chip">✅ Correct: <span>${band3QuizScore}</span></div>
+      <div class="score-chip">❌ Wrong: <span>${band3QuizWrong}</span></div>
+    </div>
+
+    <div class="grammar-question" style="font-size:30px; text-align:center; margin-bottom:20px;">
+      ${q.word}
+    </div>
+
+    <div class="activity-grid" id="band3-options">
+      ${options.map(option => `
+        <button class="act-btn" onclick="checkBand3Answer(this, '${escapeSingleQuotes(option)}')">
+          ${option}
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkBand3Answer(button, selected) {
+  const buttons = document.querySelectorAll('#band3-options .act-btn');
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (selected === band3CurrentQuestion.correct) {
+    button.style.borderColor = '#00FF88';
+    button.style.background = 'rgba(0,255,136,0.15)';
+    band3QuizScore++;
+    state.points += 2;
+    state.activitiesDone += 1;
+    state.correctAnswers += 1;
+    if (state.streak === 0) state.streak = 1;
+    saveProgress();
+    updateScoreBars();
+  } else {
+    button.style.borderColor = '#FF4444';
+    button.style.background = 'rgba(255,68,68,0.15)';
+    band3QuizWrong++;
+
+    buttons.forEach(btn => {
+      if (btn.textContent.trim() === band3CurrentQuestion.correct) {
+        btn.style.borderColor = '#00FF88';
+        btn.style.background = 'rgba(0,255,136,0.15)';
+      }
+    });
+  }
+
+  setTimeout(() => {
+    if (band3QuizTimeLeft > 0) {
+      renderBand3SpeedQuiz();
+    }
+  }, 700);
+}
+
+function endBand3SpeedQuiz() {
+  const area = document.getElementById('games-area');
+  area.innerHTML = `
+    <div class="activity-title">⏰ Time's Up!</div>
+    <div class="score-display">
+      <div class="score-number">${band3QuizScore}</div>
+      <div class="score-label">correct answers in 1 minute</div>
+      <p style="margin-bottom:16px; color: rgba(255,255,255,0.75);">
+        Wrong answers: ${band3QuizWrong}
+      </p>
+      <button class="btn-primary" onclick="startBand3SpeedQuiz()">Play Again</button>
+    </div>
+  `;
+}
+const band1HebrewQuizData = [
+  { hebrew: "על / בערך", correct: "about", wrong: ["after", "always", "animal"] },
+  { hebrew: "אחרי", correct: "after", wrong: ["again", "about", "among"] },
+  { hebrew: "חיה / בעל חיים", correct: "animal", wrong: ["air", "angry", "age"] },
+  { hebrew: "שוב", correct: "again", wrong: ["all right", "after", "always"] },
+  { hebrew: "גיל", correct: "age", wrong: ["air", "animal", "among"] },
+  { hebrew: "אוויר", correct: "air", wrong: ["age", "angry", "again"] },
+  { hebrew: "בסדר", correct: "all right", wrong: ["always", "also", "after"] },
+  { hebrew: "גם", correct: "also", wrong: ["always", "again", "about"] },
+  { hebrew: "תמיד", correct: "always", wrong: ["also", "all right", "age"] },
+  { hebrew: "בין", correct: "among", wrong: ["angry", "animal", "air"] },
+  { hebrew: "ו", correct: "and", wrong: ["about", "after", "again"] },
+  { hebrew: "כועס", correct: "angry", wrong: ["air", "all right", "among"] }
+];
+
+let band1QuizTimer = null;
+let band1QuizTimeLeft = 60;
+let band1QuizScore = 0;
+let band1QuizWrong = 0;
+let band1CurrentQuestion = null;
+
+function startBand1HebrewSpeedQuiz() {
+  clearInterval(band1QuizTimer);
+  clearInterval(band3QuizTimer);
+
+  band1QuizTimeLeft = 60;
+  band1QuizScore = 0;
+  band1QuizWrong = 0;
+
+  const area = document.getElementById('games-area');
+  area.style.display = 'block';
+
+  renderBand1HebrewSpeedQuiz();
+  startBand1Timer();
+}
+
+function startBand1Timer() {
+  if (band1QuizTimer) clearInterval(band1QuizTimer);
+
+  band1QuizTimer = setInterval(() => {
+    band1QuizTimeLeft--;
+
+    const timerEl = document.getElementById('band1-timer');
+    if (timerEl) timerEl.textContent = band1QuizTimeLeft;
+
+    if (band1QuizTimeLeft <= 0) {
+      clearInterval(band1QuizTimer);
+      endBand1HebrewSpeedQuiz();
+    }
+  }, 1000);
+}
+
+function renderBand1HebrewSpeedQuiz() {
+  const area = document.getElementById('games-area');
+  const q = band1HebrewQuizData[Math.floor(Math.random() * band1HebrewQuizData.length)];
+  band1CurrentQuestion = q;
+
+  const options = shuffleArray([q.correct, ...q.wrong]);
+
+  area.innerHTML = `
+    <div class="activity-title">🌟 Band I Hebrew Speed Quiz</div>
+    <p style="margin-bottom:12px; color: rgba(255,255,255,0.8);">
+      Choose the correct English word for the Hebrew meaning.
+    </p>
+
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
+      <div class="score-chip">⏱️ Time: <span id="band1-timer">${band1QuizTimeLeft}</span></div>
+      <div class="score-chip">✅ Correct: <span>${band1QuizScore}</span></div>
+      <div class="score-chip">❌ Wrong: <span>${band1QuizWrong}</span></div>
+    </div>
+
+    <div class="grammar-question" style="font-size:30px; text-align:center; margin-bottom:20px; direction: rtl;">
+      ${q.hebrew}
+    </div>
+
+    <div class="activity-grid" id="band1-options">
+      ${options.map(option => `
+        <button class="act-btn" onclick="checkBand1Answer(this, '${escapeSingleQuotes(option)}')">
+          ${option}
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkBand1Answer(button, selected) {
+  const buttons = document.querySelectorAll('#band1-options .act-btn');
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (selected === band1CurrentQuestion.correct) {
+    button.style.borderColor = '#00FF88';
+    button.style.background = 'rgba(0,255,136,0.15)';
+    band1QuizScore++;
+    state.points += 2;
+    state.activitiesDone += 1;
+    state.correctAnswers += 1;
+    if (state.streak === 0) state.streak = 1;
+    saveProgress();
+    updateScoreBars();
+  } else {
+    button.style.borderColor = '#FF4444';
+    button.style.background = 'rgba(255,68,68,0.15)';
+    band1QuizWrong++;
+
+    buttons.forEach(btn => {
+      if (btn.textContent.trim() === band1CurrentQuestion.correct) {
+        btn.style.borderColor = '#00FF88';
+        btn.style.background = 'rgba(0,255,136,0.15)';
+      }
+    });
+  }
+
+  setTimeout(() => {
+    if (band1QuizTimeLeft > 0) {
+      renderBand1HebrewSpeedQuiz();
+    }
+  }, 700);
+}
+
+function endBand1HebrewSpeedQuiz() {
+  const area = document.getElementById('games-area');
+  area.innerHTML = `
+    <div class="activity-title">⏰ Time's Up!</div>
+    <div class="score-display">
+      <div class="score-number">${band1QuizScore}</div>
+      <div class="score-label">correct answers in 1 minute</div>
+      <p style="margin-bottom:16px; color: rgba(255,255,255,0.75);">
+        Wrong answers: ${band1QuizWrong}
+      </p>
+      <button class="btn-primary" onclick="startBand1HebrewSpeedQuiz()">Play Again</button>
+    </div>
+  `;
+}
+
+function escapeSingleQuotes(str) {
+  return str.replace(/'/g, "\\'");
+}
     function resetProgress() {
       state.points = 0;
       state.activitiesDone = 0;
