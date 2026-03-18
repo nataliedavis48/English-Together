@@ -90,8 +90,8 @@
     }
 
     .logo-placeholder {
-      width: 50px;
-      height: 50px;
+      width: 72px;
+      height: 72px;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--hot-pink), var(--electric-blue));
       display: flex;
@@ -239,6 +239,10 @@
       background: linear-gradient(135deg, rgba(0,194,255,0.2), transparent);
     }
 
+    .section-card.games::before {
+      background: linear-gradient(135deg, rgba(255,229,0,0.15), transparent);
+    }
+
     .section-card:hover {
       transform: translateY(-6px);
       border-color: var(--neon-yellow);
@@ -277,6 +281,11 @@
 
     .section-card.grammar .card-badge {
       background: var(--electric-blue);
+      color: #120224;
+    }
+
+    .section-card.games .card-badge {
+      background: var(--neon-yellow);
       color: #120224;
     }
 
@@ -504,6 +513,112 @@
       margin-top: 22px;
     }
 
+    .logo-upload-area {
+      border: 2px dashed rgba(255,45,120,0.4);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .logo-upload-area:hover {
+      border-color: var(--hot-pink);
+    }
+
+    .logo-upload-area input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .upload-text {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .memory-card {
+      height: 150px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .memory-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+
+    .memory-card.flipped .memory-card-inner,
+    .memory-card.matched .memory-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .memory-front,
+    .memory-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      font-weight: 800;
+    }
+
+    .memory-front {
+      background: linear-gradient(135deg, var(--hot-pink), var(--electric-blue));
+      color: white;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .memory-front img {
+      max-width: 80px;
+      max-height: 80px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      padding: 4px;
+    }
+
+    .memory-back {
+      background: rgba(255,255,255,0.10);
+      border: 2px solid rgba(255,255,255,0.15);
+      color: white;
+      transform: rotateY(180deg);
+      font-size: 18px;
+    }
+
+    .memory-card.matched .memory-back {
+      border-color: #00FF88;
+      background: rgba(0,255,136,0.15);
+    }
+
+    .memory-status {
+      margin-top: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+    }
+
     @media (max-width: 700px) {
       .word-page.active-page {
         grid-template-columns: 1fr;
@@ -523,19 +638,22 @@
       <div class="logo-placeholder" id="navLogo">ET</div>
       <span class="site-title">English Together</span>
     </div>
+
     <div class="nav-links">
       <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
       <button class="nav-btn" onclick="showPage('vocab')">📚 Vocab</button>
       <button class="nav-btn" onclick="showPage('grammar')">✏️ Grammar</button>
+      <button class="nav-btn" onclick="showPage('games')">🎮 Games</button>
       <button class="nav-btn" onclick="showPage('progress')">🏆 Progress</button>
-      <button class="nav-btn" onclick="showPage('teacher')">👩‍🏫 Teacher</button>
+      <button class="nav-btn" onclick="openTeacherPage()">👩‍🏫 Teacher</button>
     </div>
   </nav>
 
   <div class="page active" id="page-home">
     <div class="hero">
       <h1>English Together</h1>
-      <p>Level up your English! Practice vocab and grammar — and have fun doing it. 🚀</p>
+      <p>Level up your English! Practice vocab, grammar and games — and have fun doing it. 🚀</p>
+
       <div class="score-bar">
         <div class="score-chip">🔥 Streak: <span id="streak-display">0</span></div>
         <div class="score-chip">⭐ Points: <span id="points-display">0</span></div>
@@ -555,6 +673,13 @@
           <div class="card-title">Grammar</div>
           <div class="card-desc">Present, past and future exercises with points and progress tracking.</div>
           <div class="card-badge">Tenses</div>
+        </div>
+
+        <div class="section-card games" onclick="showPage('games')">
+          <div class="card-icon">🎮</div>
+          <div class="card-title">Games</div>
+          <div class="card-desc">Play Memory Match and other fun games to revise English.</div>
+          <div class="card-badge">Play</div>
         </div>
       </div>
     </div>
@@ -581,6 +706,7 @@
         <div class="vocab-card"><p><strong>age</strong></p><p class="hebrew hidden">גיל</p><p><em>What age is your sister?</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
         <div class="vocab-card"><p><strong>air</strong></p><p class="hebrew hidden">אוויר</p><p><em>Open the window and let fresh air in.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
       </div>
+
       <div class="page-controls">
         <button class="page-btn" onclick="changePage('band1', -1)">← Previous</button>
         <button class="page-btn" onclick="changePage('band1', 1)">Next →</button>
@@ -597,6 +723,7 @@
         <div class="vocab-card"><p><strong>act</strong></p><p class="hebrew hidden">לפעול</p><p><em>We must act quickly.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
         <div class="vocab-card"><p><strong>action</strong></p><p class="hebrew hidden">פעולה</p><p><em>Her quick action helped everyone.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
       </div>
+
       <div class="page-controls">
         <button class="page-btn" onclick="changePage('band2', -1)">← Previous</button>
         <button class="page-btn" onclick="changePage('band2', 1)">Next →</button>
@@ -613,6 +740,7 @@
         <div class="vocab-card"><p><strong>adapt</strong></p><p class="hebrew hidden">להסתגל</p><p><em>Students must adapt to new situations.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
         <div class="vocab-card"><p><strong>additional</strong></p><p class="hebrew hidden">נוסף</p><p><em>We need additional information.</em></p><button class="reveal-btn" onclick="toggleHebrew(this)">Show Hebrew</button></div>
       </div>
+
       <div class="page-controls">
         <button class="page-btn" onclick="changePage('band3', -1)">← Previous</button>
         <button class="page-btn" onclick="changePage('band3', 1)">Next →</button>
@@ -661,6 +789,20 @@
     <div id="grammar-exercise-area" class="activity-area" style="display:none;"></div>
   </div>
 
+  <div class="page" id="page-games">
+    <button class="back-btn" onclick="showPage('home')">← Back</button>
+    <div class="page-heading">Games 🎮</div>
+    <p class="page-sub">Learn English by playing.</p>
+
+    <div class="activity-grid">
+      <button class="act-btn" onclick="startMemoryMatch()">
+        <span class="act-icon">🧠</span> Memory Match
+      </button>
+    </div>
+
+    <div id="games-area" class="activity-area" style="display:none;"></div>
+  </div>
+
   <div class="page" id="page-progress">
     <button class="back-btn" onclick="showPage('home')">← Back</button>
     <div class="page-heading">Your Progress 🏆</div>
@@ -691,283 +833,471 @@
   <div class="page" id="page-teacher">
     <button class="back-btn" onclick="showPage('home')">← Back</button>
     <div class="page-heading">Teacher's Panel 👩‍🏫</div>
-    <p class="page-sub">This section is ready for more teacher tools later.</p>
+    <p class="page-sub">Manage your site tools and settings.</p>
 
     <div class="teacher-box">
-      <h3>Teacher Area</h3>
-      <p>For now, the main working parts are Vocabulary, Grammar and Progress.</p>
+      <h3>🖼️ School Logo</h3>
+      <p style="margin-bottom:14px; color: rgba(255,255,255,0.7);">
+        Upload your school logo to use it on the website and on game cards.
+      </p>
+
+      <div class="logo-upload-area" onclick="document.getElementById('logoInput').click()">
+        <input type="file" id="logoInput" accept="image/*" onchange="uploadLogo(event)">
+        <img id="logoPreview" src="" alt="Logo" style="width:90px; height:90px; object-fit:contain; border-radius:12px; display:none; margin:0 auto 12px;">
+        <div id="logo-upload-text">
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-text">Click to upload your logo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teacher-box">
+      <h3>🏆 Progress Tools</h3>
+      <p style="margin-bottom:14px; color: rgba(255,255,255,0.7);">
+        Reset the saved student progress on this browser.
+      </p>
+      <button class="btn-primary" onclick="resetProgress()">Reset Student Progress</button>
+    </div>
+
+    <div class="teacher-box">
+      <h3>🧰 Coming Next</h3>
+      <p style="color: rgba(255,255,255,0.7); line-height:1.6;">
+        Next we can add:
+        <br>• Vocabulary manager
+        <br>• Grammar question manager
+        <br>• More games
+      </p>
     </div>
   </div>
 
-  <<script>
-  let state = {
-    points: Number(localStorage.getItem('et_points')) || 0,
-    activitiesDone: Number(localStorage.getItem('et_activitiesDone')) || 0,
-    correctAnswers: Number(localStorage.getItem('et_correctAnswers')) || 0,
-    streak: Number(localStorage.getItem('et_streak')) || 0
-  };
+  <script>
+    let state = {
+      points: Number(localStorage.getItem('et_points')) || 0,
+      activitiesDone: Number(localStorage.getItem('et_activitiesDone')) || 0,
+      correctAnswers: Number(localStorage.getItem('et_correctAnswers')) || 0,
+      streak: Number(localStorage.getItem('et_streak')) || 0,
+      logo: localStorage.getItem('et_logo') || ''
+    };
 
-  function saveProgress() {
-    localStorage.setItem('et_points', state.points);
-    localStorage.setItem('et_activitiesDone', state.activitiesDone);
-    localStorage.setItem('et_correctAnswers', state.correctAnswers);
-    localStorage.setItem('et_streak', state.streak);
-  }
+    let memoryFirstCard = null;
+    let memoryLock = false;
+    let memoryMatches = 0;
 
-  function updateScoreBars() {
-    document.getElementById('streak-display').textContent = state.streak || 0;
-    document.getElementById('points-display').textContent = state.points || 0;
-    document.getElementById('acts-display').textContent = state.activitiesDone || 0;
-    document.getElementById('prog-points').textContent = state.points || 0;
-    document.getElementById('prog-acts').textContent = state.activitiesDone || 0;
-    document.getElementById('prog-correct').textContent = state.correctAnswers || 0;
-    document.getElementById('prog-streak').textContent = state.streak || 0;
-  }
-
-  function notify(msg, isError = false) {
-    const old = document.querySelector('.notif');
-    if (old) old.remove();
-
-    const el = document.createElement('div');
-    el.className = 'notif' + (isError ? ' error' : '');
-    el.textContent = msg;
-    document.body.appendChild(el);
-
-    setTimeout(() => el.remove(), 2500);
-  }
-
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      if (btn.textContent.toLowerCase().includes(id.slice(0, 4))) {
-        btn.classList.add('active');
-      }
-    });
-
-    updateScoreBars();
-  }
-
-  function showBand(bandId) {
-    document.querySelectorAll('.band-content').forEach(band => band.classList.remove('active-band'));
-    document.getElementById(bandId).classList.add('active-band');
-  }
-
-  function changePage(bandId, direction) {
-    const band = document.getElementById(bandId);
-    const pages = band.querySelectorAll('.word-page');
-    let currentIndex = 0;
-
-    pages.forEach((page, index) => {
-      if (page.classList.contains('active-page')) currentIndex = index;
-    });
-
-    pages[currentIndex].classList.remove('active-page');
-
-    let newIndex = currentIndex + direction;
-    if (newIndex < 0) newIndex = pages.length - 1;
-    if (newIndex >= pages.length) newIndex = 0;
-
-    pages[newIndex].classList.add('active-page');
-  }
-
-  function toggleHebrew(button) {
-    const card = button.parentElement;
-    const hebrew = card.querySelector('.hebrew');
-    const wasHidden = hebrew.classList.contains('hidden');
-
-    hebrew.classList.toggle('hidden');
-    button.textContent = hebrew.classList.contains('hidden') ? 'Show Hebrew' : 'Hide Hebrew';
-
-    if (wasHidden) {
-      state.points += 1;
-      state.activitiesDone += 1;
-      state.correctAnswers += 1;
-      if (state.streak === 0) state.streak = 1;
-      saveProgress();
-      updateScoreBars();
+    function saveProgress() {
+      localStorage.setItem('et_points', state.points);
+      localStorage.setItem('et_activitiesDone', state.activitiesDone);
+      localStorage.setItem('et_correctAnswers', state.correctAnswers);
+      localStorage.setItem('et_streak', state.streak);
+      localStorage.setItem('et_logo', state.logo || '');
     }
-  }
 
-  function showGrammarTense(tense) {
-    document.querySelectorAll('.grammar-tense').forEach(section => {
-      section.classList.remove('active-band');
-    });
+    function updateScoreBars() {
+      document.getElementById('streak-display').textContent = state.streak || 0;
+      document.getElementById('points-display').textContent = state.points || 0;
+      document.getElementById('acts-display').textContent = state.activitiesDone || 0;
+      document.getElementById('prog-points').textContent = state.points || 0;
+      document.getElementById('prog-acts').textContent = state.activitiesDone || 0;
+      document.getElementById('prog-correct').textContent = state.correctAnswers || 0;
+      document.getElementById('prog-streak').textContent = state.streak || 0;
+    }
 
-    document.getElementById('grammar-' + tense).classList.add('active-band');
-    document.getElementById('grammar-exercise-area').style.display = 'none';
-  }
+    function notify(msg, isError = false) {
+      const old = document.querySelector('.notif');
+      if (old) old.remove();
 
-  function checkGrammarAnswer(button, isCorrect) {
-    const group = button.parentElement;
-    const buttons = group.querySelectorAll('.act-btn');
+      const el = document.createElement('div');
+      el.className = 'notif' + (isError ? ' error' : '');
+      el.textContent = msg;
+      document.body.appendChild(el);
 
-    if (group.dataset.answered === 'yes') return;
-    group.dataset.answered = 'yes';
+      setTimeout(() => el.remove(), 2500);
+    }
 
-    buttons.forEach(btn => btn.disabled = true);
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
 
-    if (isCorrect) {
-      button.style.borderColor = '#00FF88';
-      button.style.background = 'rgba(0,255,136,0.15)';
-      state.points += 2;
-      state.activitiesDone += 1;
-      state.correctAnswers += 1;
-      if (state.streak === 0) state.streak = 1;
-      saveProgress();
-      updateScoreBars();
-      notify('Correct!');
-    } else {
-      button.style.borderColor = '#FF4444';
-      button.style.background = 'rgba(255,68,68,0.15)';
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-correct') === 'true') {
-          btn.style.borderColor = '#00FF88';
-          btn.style.background = 'rgba(0,255,136,0.15)';
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(id.slice(0, 4))) {
+          btn.classList.add('active');
         }
       });
-      notify('Try again', true);
+
+      updateScoreBars();
     }
-  }
 
-  function makeOption(text, correct) {
-    return `<button class="act-btn" data-correct="${correct}" onclick="checkGrammarAnswer(this, ${correct})">${text}</button>`;
-  }
+    function showBand(bandId) {
+      document.querySelectorAll('.band-content').forEach(band => band.classList.remove('active-band'));
+      document.getElementById(bandId).classList.add('active-band');
+    }
 
-  function renderQuestions(title, questions) {
-    const area = document.getElementById('grammar-exercise-area');
-    area.style.display = 'block';
+    function changePage(bandId, direction) {
+      const band = document.getElementById(bandId);
+      const pages = band.querySelectorAll('.word-page');
+      let currentIndex = 0;
 
-    let html = `<div class="activity-title">${title}</div>`;
+      pages.forEach((page, index) => {
+        if (page.classList.contains('active-page')) currentIndex = index;
+      });
 
-    questions.forEach((q, index) => {
-      html += `
-        <div class="grammar-question">${index + 1}. ${q.question}</div>
-        <div class="activity-grid">
-          ${makeOption(q.options[0], q.correctIndex === 0)}
-          ${makeOption(q.options[1], q.correctIndex === 1)}
-          ${makeOption(q.options[2], q.correctIndex === 2)}
+      pages[currentIndex].classList.remove('active-page');
+
+      let newIndex = currentIndex + direction;
+      if (newIndex < 0) newIndex = pages.length - 1;
+      if (newIndex >= pages.length) newIndex = 0;
+
+      pages[newIndex].classList.add('active-page');
+    }
+
+    function toggleHebrew(button) {
+      const card = button.parentElement;
+      const hebrew = card.querySelector('.hebrew');
+      const wasHidden = hebrew.classList.contains('hidden');
+
+      hebrew.classList.toggle('hidden');
+      button.textContent = hebrew.classList.contains('hidden') ? 'Show Hebrew' : 'Hide Hebrew';
+
+      if (wasHidden) {
+        state.points += 1;
+        state.activitiesDone += 1;
+        state.correctAnswers += 1;
+        if (state.streak === 0) state.streak = 1;
+        saveProgress();
+        updateScoreBars();
+      }
+    }
+
+    function showGrammarTense(tense) {
+      document.querySelectorAll('.grammar-tense').forEach(section => {
+        section.classList.remove('active-band');
+      });
+
+      document.getElementById('grammar-' + tense).classList.add('active-band');
+      document.getElementById('grammar-exercise-area').style.display = 'none';
+    }
+
+    function checkGrammarAnswer(button, isCorrect) {
+      const group = button.parentElement;
+      const buttons = group.querySelectorAll('.act-btn');
+
+      if (group.dataset.answered === 'yes') return;
+      group.dataset.answered = 'yes';
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        button.style.borderColor = '#00FF88';
+        button.style.background = 'rgba(0,255,136,0.15)';
+        state.points += 2;
+        state.activitiesDone += 1;
+        state.correctAnswers += 1;
+        if (state.streak === 0) state.streak = 1;
+        saveProgress();
+        updateScoreBars();
+        notify('Correct!');
+      } else {
+        button.style.borderColor = '#FF4444';
+        button.style.background = 'rgba(255,68,68,0.15)';
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-correct') === 'true') {
+            btn.style.borderColor = '#00FF88';
+            btn.style.background = 'rgba(0,255,136,0.15)';
+          }
+        });
+        notify('Try again', true);
+      }
+    }
+
+    function makeOption(text, correct) {
+      return `<button class="act-btn" data-correct="${correct}" onclick="checkGrammarAnswer(this, ${correct})">${text}</button>`;
+    }
+
+    function renderQuestions(title, questions) {
+      const area = document.getElementById('grammar-exercise-area');
+      area.style.display = 'block';
+
+      let html = `<div class="activity-title">${title}</div>`;
+
+      questions.forEach((q, index) => {
+        html += `
+          <div class="grammar-question">${index + 1}. ${q.question}</div>
+          <div class="activity-grid">
+            ${makeOption(q.options[0], q.correctIndex === 0)}
+            ${makeOption(q.options[1], q.correctIndex === 1)}
+            ${makeOption(q.options[2], q.correctIndex === 2)}
+          </div>
+        `;
+      });
+
+      area.innerHTML = html;
+    }
+
+    function showGrammarExercise(type) {
+      if (type === 'present-simple') {
+        renderQuestions('Present Simple', [
+          { question: 'She ___ to school every day.', options: ['goes', 'go', 'going'], correctIndex: 0 },
+          { question: 'They ___ soccer on Sundays.', options: ['plays', 'play', 'are playing'], correctIndex: 1 },
+          { question: 'My mother ___ coffee every morning.', options: ['drinks', 'drink', 'is drinking'], correctIndex: 0 },
+          { question: 'He ___ English very well.', options: ['speak', 'speaks', 'is speaking'], correctIndex: 1 },
+          { question: 'We ___ our grandparents every Friday.', options: ['visit', 'visits', 'are visiting'], correctIndex: 0 },
+          { question: 'The sun ___ in the east.', options: ['rises', 'rise', 'is rising'], correctIndex: 0 }
+        ]);
+      }
+
+      if (type === 'present-progressive') {
+        renderQuestions('Present Progressive', [
+          { question: 'They ___ football right now.', options: ['play', 'are playing', 'plays'], correctIndex: 1 },
+          { question: 'She ___ a book at the moment.', options: ['is reading', 'reads', 'read'], correctIndex: 0 },
+          { question: 'I ___ my homework now.', options: ['do', 'am doing', 'does'], correctIndex: 1 },
+          { question: 'We ___ dinner now.', options: ['cook', 'are cooking', 'cooks'], correctIndex: 1 },
+          { question: 'Look! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
+          { question: 'He ___ on the phone at the moment.', options: ['talks', 'is talking', 'talk'], correctIndex: 1 }
+        ]);
+      }
+
+      if (type === 'present-mixed') {
+        renderQuestions('Mixed Present', [
+          { question: 'She usually ___ to school by bus.', options: ['goes', 'is going', 'go'], correctIndex: 0 },
+          { question: 'Listen! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
+          { question: 'My father ___ coffee every morning.', options: ['drinks', 'is drinking', 'drink'], correctIndex: 0 },
+          { question: 'We ___ lunch now.', options: ['are eating', 'eat', 'eats'], correctIndex: 0 },
+          { question: 'Tom often ___ computer games after school.', options: ['plays', 'is playing', 'play'], correctIndex: 0 },
+          { question: 'Look! They ___ in the pool.', options: ['are swimming', 'swim', 'swims'], correctIndex: 0 }
+        ]);
+      }
+
+      if (type === 'past-simple') {
+        renderQuestions('Past Simple', [
+          { question: 'She ___ to school yesterday.', options: ['went', 'goes', 'is going'], correctIndex: 0 },
+          { question: 'They ___ football last Sunday.', options: ['played', 'play', 'were playing'], correctIndex: 0 },
+          { question: 'My mother ___ dinner at 7:00 last night.', options: ['cooks', 'cooked', 'is cooking'], correctIndex: 1 }
+        ]);
+      }
+
+      if (type === 'past-progressive') {
+        renderQuestions('Past Progressive', [
+          { question: 'They ___ football when it started to rain.', options: ['played', 'were playing', 'play'], correctIndex: 1 },
+          { question: 'I ___ TV at 8:00 last night.', options: ['watched', 'was watching', 'watch'], correctIndex: 1 },
+          { question: 'She ___ while her brother was studying.', options: ['was sleeping', 'slept', 'sleeps'], correctIndex: 0 }
+        ]);
+      }
+
+      if (type === 'past-mixed') {
+        renderQuestions('Mixed Past', [
+          { question: 'While I ___ to school, I saw my friend.', options: ['was walking', 'walked', 'walk'], correctIndex: 0 },
+          { question: 'We ___ dinner and then watched a film.', options: ['finished', 'were finishing', 'finish'], correctIndex: 0 },
+          { question: 'They ___ in the park when the phone rang.', options: ['played', 'were playing', 'plays'], correctIndex: 1 }
+        ]);
+      }
+
+      if (type === 'future-will') {
+        renderQuestions('Future with Will', [
+          { question: 'I think it ___ tomorrow.', options: ['will rain', 'rains', 'is raining'], correctIndex: 0 },
+          { question: 'She ___ you later.', options: ['calls', 'will call', 'called'], correctIndex: 1 },
+          { question: 'We ___ help you with your homework.', options: ['will', 'are', 'did'], correctIndex: 0 }
+        ]);
+      }
+
+      if (type === 'future-going') {
+        renderQuestions('Be Going To', [
+          { question: 'They ___ visit their grandmother this weekend.', options: ['are going to', 'will', 'were going to'], correctIndex: 0 },
+          { question: 'I ___ study tonight.', options: ['will studying', 'am going to', 'go to'], correctIndex: 1 },
+          { question: 'She ___ buy a new bag next week.', options: ['is', 'is going to', 'was going to'], correctIndex: 1 }
+        ]);
+      }
+
+      if (type === 'future-mixed') {
+        renderQuestions('Mixed Future', [
+          { question: 'Look at those clouds! It ___ rain.', options: ['will', 'is going to', 'was going to'], correctIndex: 1 },
+          { question: 'I think people ___ live on Mars one day.', options: ['will', 'are going to', 'were'], correctIndex: 0 },
+          { question: 'We ___ start the lesson in five minutes.', options: ['started', 'are going to', 'was'], correctIndex: 1 }
+        ]);
+      }
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startMemoryMatch() {
+      const area = document.getElementById('games-area');
+      area.style.display = 'block';
+
+      const vocabPairs = [
+        { word: 'about', match: 'על / בערך' },
+        { word: 'after', match: 'אחרי' },
+        { word: 'animal', match: 'חיה / בעל חיים' },
+        { word: 'ability', match: 'יכולת' },
+        { word: 'accept', match: 'לקבל' },
+        { word: 'abandon', match: 'לנטוש' }
+      ];
+
+      let cards = [];
+      vocabPairs.forEach((pair, index) => {
+        cards.push({ text: pair.word, pairId: index });
+        cards.push({ text: pair.match, pairId: index });
+      });
+
+      cards = shuffleArray(cards);
+
+      const logoHtml = state.logo
+        ? `<img src="${state.logo}" alt="School logo">`
+        : `<div style="font-size:30px;">🏫</div>`;
+
+      area.innerHTML = `
+        <div class="activity-title">🧠 Memory Match</div>
+        <p>Match the English word to the Hebrew meaning.</p>
+        <div class="memory-grid">
+          ${cards.map((card, i) => `
+            <div class="memory-card" data-index="${i}" data-pair="${card.pairId}" onclick="flipMemoryCard(this)">
+              <div class="memory-card-inner">
+                <div class="memory-front">
+                  ${logoHtml}
+                </div>
+                <div class="memory-back">${card.text}</div>
+              </div>
+            </div>
+          `).join('')}
         </div>
+        <div class="memory-status" id="memory-status">Matches: 0 / ${vocabPairs.length}</div>
       `;
-    });
 
-    area.innerHTML = html;
-  }
-
-  function showGrammarExercise(type) {
-    if (type === 'present-simple') {
-      renderQuestions('Present Simple', [
-        { question: 'She ___ to school every day.', options: ['goes', 'go', 'going'], correctIndex: 0 },
-        { question: 'They ___ soccer on Sundays.', options: ['plays', 'play', 'are playing'], correctIndex: 1 },
-        { question: 'My mother ___ coffee every morning.', options: ['drinks', 'drink', 'is drinking'], correctIndex: 0 },
-        { question: 'He ___ English very well.', options: ['speak', 'speaks', 'is speaking'], correctIndex: 1 },
-        { question: 'We ___ our grandparents every Friday.', options: ['visit', 'visits', 'are visiting'], correctIndex: 0 },
-        { question: 'The sun ___ in the east.', options: ['rise', 'rises', 'is rising'], correctIndex: 1 }
-      ]);
+      memoryFirstCard = null;
+      memoryLock = false;
+      memoryMatches = 0;
     }
 
-    if (type === 'present-progressive') {
-      renderQuestions('Present Progressive', [
-        { question: 'They ___ football right now.', options: ['play', 'are playing', 'plays'], correctIndex: 1 },
-        { question: 'She ___ a book at the moment.', options: ['is reading', 'reads', 'read'], correctIndex: 0 },
-        { question: 'I ___ my homework now.', options: ['do', 'am doing', 'does'], correctIndex: 1 },
-        { question: 'We ___ dinner now.', options: ['cook', 'are cooking', 'cooks'], correctIndex: 1 },
-        { question: 'Look! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
-        { question: 'He ___ on the phone at the moment.', options: ['talks', 'is talking', 'talk'], correctIndex: 1 }
-      ]);
+    function flipMemoryCard(card) {
+      if (memoryLock) return;
+      if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+      card.classList.add('flipped');
+
+      if (!memoryFirstCard) {
+        memoryFirstCard = card;
+        return;
+      }
+
+      const firstPair = memoryFirstCard.dataset.pair;
+      const secondPair = card.dataset.pair;
+
+      if (firstPair === secondPair) {
+        memoryFirstCard.classList.add('matched');
+        card.classList.add('matched');
+
+        memoryMatches++;
+        state.points += 3;
+        state.activitiesDone += 1;
+        state.correctAnswers += 1;
+        if (state.streak === 0) state.streak = 1;
+        saveProgress();
+        updateScoreBars();
+
+        document.getElementById('memory-status').textContent = `Matches: ${memoryMatches} / 6`;
+
+        memoryFirstCard = null;
+
+        if (memoryMatches === 6) {
+          notify('Amazing! You matched them all! 🎉');
+        }
+      } else {
+        memoryLock = true;
+        setTimeout(() => {
+          memoryFirstCard.classList.remove('flipped');
+          card.classList.remove('flipped');
+          memoryFirstCard = null;
+          memoryLock = false;
+        }, 1000);
+      }
     }
 
-    if (type === 'present-mixed') {
-      renderQuestions('Mixed Present', [
-        { question: 'She usually ___ to school by bus.', options: ['goes', 'is going', 'go'], correctIndex: 0 },
-        { question: 'Listen! The baby ___ .', options: ['cries', 'is crying', 'cry'], correctIndex: 1 },
-        { question: 'My father ___ coffee every morning.', options: ['drinks', 'is drinking', 'drink'], correctIndex: 0 },
-        { question: 'We ___ lunch now.', options: ['eat', 'are eating', 'eats'], correctIndex: 1 },
-        { question: 'Tom often ___ computer games after school.', options: ['plays', 'is playing', 'play'], correctIndex: 0 },
-        { question: 'Look! They ___ in the pool.', options: ['swim', 'are swimming', 'swims'], correctIndex: 1 }
-      ]);
+    function uploadLogo(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const src = e.target.result;
+
+        state.logo = src;
+        saveProgress();
+
+        const preview = document.getElementById('logoPreview');
+        const uploadText = document.getElementById('logo-upload-text');
+        const navLogo = document.getElementById('navLogo');
+
+        if (preview) {
+          preview.src = src;
+          preview.style.display = 'block';
+        }
+
+        if (uploadText) {
+          uploadText.style.display = 'none';
+        }
+
+        if (navLogo) {
+          navLogo.innerHTML = `<img src="${src}" alt="Logo">`;
+        }
+
+        notify('Logo uploaded! ✨');
+      };
+
+      reader.readAsDataURL(file);
     }
 
-    if (type === 'past-simple') {
-      renderQuestions('Past Simple', [
-        { question: 'She ___ to school yesterday.', options: ['went', 'goes', 'is going'], correctIndex: 0 },
-        { question: 'They ___ football last Sunday.', options: ['played', 'play', 'were playing'], correctIndex: 0 },
-        { question: 'My mother ___ dinner at 7:00 last night.', options: ['cooks', 'cooked', 'is cooking'], correctIndex: 1 },
-        { question: 'We ___ a film yesterday evening.', options: ['watched', 'watch', 'are watching'], correctIndex: 0 },
-        { question: 'He ___ his homework after dinner.', options: ['finished', 'finishes', 'was finishing'], correctIndex: 0 },
-        { question: 'I ___ my friend last weekend.', options: ['visit', 'visited', 'am visiting'], correctIndex: 1 }
-      ]);
+    function resetProgress() {
+      state.points = 0;
+      state.activitiesDone = 0;
+      state.correctAnswers = 0;
+      state.streak = 0;
+      saveProgress();
+      updateScoreBars();
+      notify('Progress reset!');
     }
 
-    if (type === 'past-progressive') {
-      renderQuestions('Past Progressive', [
-        { question: 'They ___ football when it started to rain.', options: ['played', 'were playing', 'play'], correctIndex: 1 },
-        { question: 'I ___ TV at 8:00 last night.', options: ['watched', 'was watching', 'watch'], correctIndex: 1 },
-        { question: 'She ___ while her brother was studying.', options: ['was sleeping', 'slept', 'sleeps'], correctIndex: 0 },
-        { question: 'We ___ home when we saw the teacher.', options: ['walked', 'were walking', 'walk'], correctIndex: 1 },
-        { question: 'He ___ dinner when the phone rang.', options: ['was making', 'made', 'makes'], correctIndex: 0 },
-        { question: 'They ___ in the garden at 5:00 yesterday.', options: ['played', 'were playing', 'play'], correctIndex: 1 }
-      ]);
+    function openTeacherPage() {
+      const unlocked = sessionStorage.getItem("teacherUnlocked");
+
+      if (unlocked === "yes") {
+        showPage('teacher');
+        return;
+      }
+
+      const password = prompt("Enter teacher password:");
+      if (password === "Yachad2026") {
+        sessionStorage.setItem("teacherUnlocked", "yes");
+        showPage('teacher');
+      } else if (password !== null) {
+        notify("Wrong password", true);
+      }
     }
 
-    if (type === 'past-mixed') {
-      renderQuestions('Mixed Past', [
-        { question: 'While I ___ to school, I saw my friend.', options: ['was walking', 'walked', 'walk'], correctIndex: 0 },
-        { question: 'We ___ dinner and then watched a film.', options: ['finished', 'were finishing', 'finish'], correctIndex: 0 },
-        { question: 'They ___ in the park when the phone rang.', options: ['played', 'were playing', 'plays'], correctIndex: 1 },
-        { question: 'She ___ when her mother came home.', options: ['slept', 'was sleeping', 'sleeps'], correctIndex: 1 },
-        { question: 'He ___ the window and then sat down.', options: ['opened', 'was opening', 'opens'], correctIndex: 0 },
-        { question: 'I ___ breakfast at 7:30 yesterday.', options: ['ate', 'was eating', 'eat'], correctIndex: 0 }
-      ]);
+    if (state.logo) {
+      const navLogo = document.getElementById('navLogo');
+      if (navLogo) {
+        navLogo.innerHTML = `<img src="${state.logo}" alt="Logo">`;
+      }
+
+      const preview = document.getElementById('logoPreview');
+      const uploadText = document.getElementById('logo-upload-text');
+
+      if (preview) {
+        preview.src = state.logo;
+        preview.style.display = 'block';
+      }
+
+      if (uploadText) {
+        uploadText.style.display = 'none';
+      }
     }
 
-    if (type === 'future-will') {
-      renderQuestions('Future with Will', [
-        { question: 'I think it ___ tomorrow.', options: ['will rain', 'rains', 'is raining'], correctIndex: 0 },
-        { question: 'She ___ you later.', options: ['calls', 'will call', 'called'], correctIndex: 1 },
-        { question: 'We ___ help you with your homework.', options: ['will', 'are', 'did'], correctIndex: 0 },
-        { question: 'I am sure he ___ the answer.', options: ['knows', 'will know', 'knew'], correctIndex: 1 },
-        { question: 'Maybe they ___ late.', options: ['will be', 'are being', 'were'], correctIndex: 0 },
-        { question: 'I think people ___ to the moon again.', options: ['will travel', 'travel', 'traveled'], correctIndex: 0 }
-      ]);
-    }
-
-    if (type === 'future-going') {
-      renderQuestions('Be Going To', [
-        { question: 'They ___ visit their grandmother this weekend.', options: ['are going to', 'will', 'were going to'], correctIndex: 0 },
-        { question: 'I ___ study tonight.', options: ['will studying', 'am going to', 'go to'], correctIndex: 1 },
-        { question: 'She ___ buy a new bag next week.', options: ['is', 'is going to', 'was going to'], correctIndex: 1 },
-        { question: 'We ___ clean the classroom tomorrow.', options: ['are going to', 'will be', 'went to'], correctIndex: 0 },
-        { question: 'He ___ play basketball after school.', options: ['is going to', 'goes to', 'was'], correctIndex: 0 },
-        { question: 'I ___ meet my cousin on Friday.', options: ['am going to', 'will be', 'met'], correctIndex: 0 }
-      ]);
-    }
-
-    if (type === 'future-mixed') {
-      renderQuestions('Mixed Future', [
-        { question: 'Look at those clouds! It ___ rain.', options: ['will', 'is going to', 'was going to'], correctIndex: 1 },
-        { question: 'I think people ___ live on Mars one day.', options: ['will', 'are going to', 'were'], correctIndex: 0 },
-        { question: 'We ___ start the lesson in five minutes.', options: ['started', 'are going to', 'was'], correctIndex: 1 },
-        { question: 'I am sure she ___ enjoy the trip.', options: ['will', 'is going to', 'went to'], correctIndex: 0 },
-        { question: 'They ___ have a picnic tomorrow. They already bought food.', options: ['are going to', 'will', 'had'], correctIndex: 0 },
-        { question: 'Maybe he ___ call later.', options: ['will', 'is going to', 'was going'], correctIndex: 0 }
-      ]);
-    }
-  }
-
-  function resetProgress() {
-    state.points = 0;
-    state.activitiesDone = 0;
-    state.correctAnswers = 0;
-    state.streak = 0;
-    saveProgress();
     updateScoreBars();
-    notify('Progress reset!');
-  }
-
-  updateScoreBars();
   </script>
 </body>
 </html>
